@@ -1,10 +1,10 @@
-namespace ContactDAL
-{
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
-    public partial class tbl_contact: IEqualityComparer<tbl_contact>,IEquatable<tbl_contact>
+namespace ContactBLL
+{
+    public class Contact : IEqualityComparer<Contact>, IEquatable<Contact>
     {
         [Key]
         public int ContactID { get; set; }
@@ -26,17 +26,17 @@ namespace ContactDAL
 
         public DateTime? Birthday { get; set; }
 
-        public static bool operator ==(tbl_contact x, tbl_contact y)
+        public static bool operator ==(Contact x, Contact y)
         {
             return x.Equals(y);
         }
 
-        public static bool operator !=(tbl_contact x, tbl_contact y)
+        public static bool operator !=(Contact x, Contact y)
         {
             return !(x.Equals(y));
         }
 
-        public bool Equals(tbl_contact x, tbl_contact y)
+        public bool Equals(Contact x, Contact y)
         {
             return x.FirstName == y.FirstName &&
                 x.LastName == y.LastName &&
@@ -45,12 +45,12 @@ namespace ContactDAL
                 x.Birthday == y.Birthday;
         }
 
-        public bool Equals(tbl_contact other)
+        public bool Equals(Contact other)
         {
             return Equals(this, other);
         }
 
-        public int GetHashCode(tbl_contact obj)
+        public int GetHashCode(Contact obj)
         {
             unchecked
             {

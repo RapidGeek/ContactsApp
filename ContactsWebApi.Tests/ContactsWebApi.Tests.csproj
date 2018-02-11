@@ -116,9 +116,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ContactDAL\ContactDAL.csproj">
-      <Project>{3f5adf13-7a02-4166-a47d-85beee2a8797}</Project>
-      <Name>ContactDAL</Name>
+    <ProjectReference Include="..\ContactBLL\ContactBLL.csproj">
+      <Project>{84d9131e-50e8-4ad8-90a8-f1df82a6377c}</Project>
+      <Name>ContactBLL</Name>
     </ProjectReference>
     <ProjectReference Include="..\ContactsWebApi\ContactsWebApi.csproj">
       <Project>{7772051F-A67E-43F4-9D3C-F07D95415439}</Project>

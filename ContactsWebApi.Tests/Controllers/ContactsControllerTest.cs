@@ -1,13 +1,9 @@
-﻿using System;
+﻿using ContactBLL;
+using ContactsWebApi.Controllers;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Web.Http;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ContactsWebApi;
-using ContactsWebApi.Controllers;
-using ContactDAL;
 
 namespace ContactsWebApi.Tests.Controllers
 {
@@ -21,7 +17,7 @@ namespace ContactsWebApi.Tests.Controllers
             ContactsController controller = new ContactsController();
 
             // Act
-            IEnumerable<tbl_contact> result = controller.Get();
+            IEnumerable<Contact> result = controller.Get();
 
             // Assert
             Assert.IsNotNull(result);
@@ -35,7 +31,7 @@ namespace ContactsWebApi.Tests.Controllers
             ContactsController controller = new ContactsController();
 
             // Act
-            tbl_contact result = controller.Get(1);
+            Contact result = controller.Get(1);
 
             // Assert
             Assert.AreEqual(1, result.ContactID);
@@ -46,7 +42,7 @@ namespace ContactsWebApi.Tests.Controllers
         {
             // Arrange
             ContactsController controller = new ContactsController();
-            var contact = new tbl_contact()
+            var contact = new Contact()
             {
                 FirstName = "Joe",
                 LastName = "Smith",
@@ -68,7 +64,7 @@ namespace ContactsWebApi.Tests.Controllers
         {
             // Arrange
             ContactsController controller = new ContactsController();
-            var contact = new tbl_contact()
+            var contact = new Contact()
             {
                 FirstName = "Joe",
                 LastName = "Smoe",

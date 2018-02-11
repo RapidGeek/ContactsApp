@@ -1,37 +1,33 @@
-﻿using System;
+﻿using ContactBLL;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
-using ContactDAL;
 
 namespace ContactsWebApi.Controllers
 {
     public class ContactsController : ApiController
     {
-        internal ContactOperations op = new ContactOperations();
+        internal ContactBL op = new ContactBL();
 
         // GET api/values
-        public IEnumerable<tbl_contact> Get()
+        public IEnumerable<Contact> Get()
         {
             return op.Read();
         }
 
         // GET api/values/5
-        public tbl_contact Get(int id)
+        public Contact Get(int id)
         {
             return op.ReadById(id);
         }
 
         // POST api/values
-        public void Post([FromBody]tbl_contact value)
+        public void Post([FromBody]Contact value)
         {
             op.Create(value);
         }
 
         // PUT api/values/5
-        public void Put(int id, [FromBody]tbl_contact value)
+        public void Put(int id, [FromBody]Contact value)
         {
             op.Update(id, value);
         }
