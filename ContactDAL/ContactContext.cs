@@ -16,9 +16,6 @@ namespace ContactDAL
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<tbl_contact>()
-                .Property(e => e.PhoneNumber)
-                .IsFixedLength();
         }
     }
 }

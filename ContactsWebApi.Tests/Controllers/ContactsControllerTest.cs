@@ -12,7 +12,7 @@ using ContactDAL;
 namespace ContactsWebApi.Tests.Controllers
 {
     [TestClass]
-    public class CointactsControllerTest
+    public class ContactsControllerTest
     {
         [TestMethod]
         public void Get()
@@ -59,6 +59,8 @@ namespace ContactsWebApi.Tests.Controllers
             controller.Post(contact);
 
             // Assert
+            var last = controller.Get().Last();
+            Assert.IsTrue(last == contact);
         }
 
         [TestMethod]
@@ -79,6 +81,8 @@ namespace ContactsWebApi.Tests.Controllers
             controller.Put(1, contact);
 
             // Assert
+            var one = controller.Get(1);
+            Assert.AreEqual("Smoe", one.LastName);
         }
 
         [TestMethod]
@@ -93,7 +97,7 @@ namespace ContactsWebApi.Tests.Controllers
 
             // Assert
             var last = controller.Get().Last();
-            Assert.IsTrue(last != deleteMe);
+            Assert.IsTrue(last.ContactID != deleteMe.ContactID);
         }
     }
 }
