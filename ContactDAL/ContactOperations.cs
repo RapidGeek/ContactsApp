@@ -29,7 +29,7 @@ namespace ContactDAL
         {
             using (var context = new ContactContext())
             {
-                return context.tbl_contact.Where(c => c.ContactID == id).First();
+                return context.tbl_contact.Where(c => c.ContactID == id).FirstOrDefault();
             }
         }
 
@@ -37,7 +37,7 @@ namespace ContactDAL
         {
             using (var context = new ContactContext())
             {
-                var elem = context.tbl_contact.Where(c => c.ContactID == id).First();
+                var elem = context.tbl_contact.Where(c => c.ContactID == id).FirstOrDefault();
                 elem.FirstName = contact.FirstName;
                 elem.LastName = contact.LastName;
                 elem.Address = contact.Address;
@@ -51,7 +51,7 @@ namespace ContactDAL
         {
             using (var context = new ContactContext())
             {
-                var elem = context.tbl_contact.Where(c => c.ContactID == id).First();
+                var elem = context.tbl_contact.Where(c => c.ContactID == id).FirstOrDefault();
                 context.tbl_contact.Remove(elem);
                 context.SaveChanges();
             }
