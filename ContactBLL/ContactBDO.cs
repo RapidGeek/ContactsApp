@@ -26,18 +26,18 @@ namespace ContactBLL
 
         public DateTime? Birthday { get; set; }
 
-        public static bool operator ==(Contact x, Contact y)
-        {
-            return x.Equals(y);
-        }
+        public static bool operator ==(Contact x, Contact y) => x.Equals(y);
 
-        public static bool operator !=(Contact x, Contact y)
-        {
-            return !(x.Equals(y));
-        }
+        public static bool operator !=(Contact x, Contact y) => !(x.Equals(y));
 
         public bool Equals(Contact x, Contact y)
         {
+            // if both null or either of them are null
+            var xIsNull = Object.ReferenceEquals(x, null);
+            var yIsNull = Object.ReferenceEquals(y, null);
+            if (xIsNull && yIsNull) return true;
+            if (xIsNull || yIsNull) return false;
+
             return x.FirstName == y.FirstName &&
                 x.LastName == y.LastName &&
                 x.Address == y.Address &&
@@ -55,12 +55,18 @@ namespace ContactBLL
             unchecked
             {
                 int hash = 17;
-                // Maybe nullity checks, if these are objects not primitives!
-                hash = hash * 23 + obj.FirstName.GetHashCode();
-                hash = hash * 23 + obj.LastName.GetHashCode();
-                hash = hash * 23 + obj.Address.GetHashCode();
-                hash = hash * 23 + obj.PhoneNumber.GetHashCode();
-                hash = hash * 23 + obj.Birthday.GetHashCode();
+                if (Object.ReferenceEquals(obj, null))
+                {
+                    hash = hash * 23 + obj.FirstName.GetHashCode();
+                    hash = hash * 23 + obj.LastName.GetHashCode();
+                    hash = hash * 23 + obj.Address.GetHashCode();
+                    hash = hash * 23 + obj.PhoneNumber.GetHashCode();
+                    hash = hash * 23 + obj.Birthday.GetHashCode();
+                }
+                else
+                {
+                    hash = 0;
+                }
                 return hash;
             }
         }
