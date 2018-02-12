@@ -41,8 +41,19 @@ namespace ContactBLL
             return x.FirstName == y.FirstName &&
                 x.LastName == y.LastName &&
                 x.Address == y.Address &&
-                x.PhoneNumber.Trim() == y.PhoneNumber.Trim() &&
+                x.PhoneNumber == y.PhoneNumber &&
                 x.Birthday == y.Birthday;
+        }
+
+        public override bool Equals(Object o)
+        {
+            if(o is Contact)
+            {
+                var c = o as Contact;
+
+                return this.Equals(c);
+            }
+            return false;
         }
 
         public bool Equals(Contact other)
@@ -69,6 +80,11 @@ namespace ContactBLL
                 }
                 return hash;
             }
+        }
+
+        public override int GetHashCode()
+        {
+            return GetHashCode(this);
         }
     }
 }
